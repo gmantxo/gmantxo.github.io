@@ -3,19 +3,18 @@ var COLORS = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 var duplicatesAllowed = true;
 
 var generateCode = function(duplicates) {
-    if (!duplicates) {duplicates = true};
-    var newCode;
+    duplicates = typeof duplicates !== 'undefined' ? duplicates : true;
+    var newCode = [];
     if (duplicates) {
-        newCode = [];
         for (var i = 0; i < CODELENGTH; i++) {
             var randomNumber = Math.floor(Math.random() * COLORS.length);
             newCode.push(COLORS[randomNumber]);
         };
     } else {
-        newCode = COLORS.slice(0);
-        for (var i = 0; i < COLORS.length - CODELENGTH; i++) {
-            var randomNumber = Math.floor(Math.random() * newCode.length);
-            newCode.splice(randomNumber, 1);
+        newColors = COLORS.slice(0);
+        for (var i = 0; i < CODELENGTH; i++) {
+            var randomNumber = Math.floor(Math.random() * newColors.length);
+            newCode.push(newColors.splice(randomNumber, 1)[0]);
         };
     };
     return newCode;
