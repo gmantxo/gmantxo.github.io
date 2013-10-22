@@ -17,14 +17,14 @@ h1 {
 	font-weight: 300;
 	color: #789;
 }
-.tablero {
+.board {
 	position: relative;
 	width:29rem;
 	margin: auto;
 	overflow: hidden;
 	border-radius: 3px;
 }
-.fila {
+.row {
 	position: relative;
 	width:100%;
 	height:6.5rem;
@@ -38,11 +38,11 @@ h1 {
 	background-color:#fafafa;
 	border-top: 1px solid #ddd;
 }
-.fila:first-child{
+.row:first-child{
 	background-color: #fafafa;
 	border:none;
 }
-.ficha {
+.peg {
 	position: absolute;
 	border-radius: 50%;
 	background-color: #eee;
@@ -50,7 +50,7 @@ h1 {
 	box-shadow: none;
 	transition:all 0.3s;
 }
-.selector .ficha {
+.selector .peg {
 	margin: auto;
 	width:3rem;
 	height:3rem;
@@ -58,103 +58,103 @@ h1 {
 	box-shadow: inset 0 0 0 0.5rem #fafafa;
 	cursor: pointer;
 }
-.selector .ficha:hover {
+.selector .peg:hover {
 	box-shadow: none;	
 }
-.codigo {
+.code {
 	height: 4.5rem;
 	width: 4.5rem;
 }
-.respuesta {
+.feedback {
 	height: 2rem;
 	width: 2rem;	
 }
 
-.fila .ficha:nth-child(1) {
+.row .peg:nth-child(1) {
 	top:1rem;
 	left:8rem;
 }
-.fila .ficha:nth-child(2) {
+.row .peg:nth-child(2) {
 	top:1rem;
 	left:13rem;
 }
-.fila .ficha:nth-child(3) {
+.row .peg:nth-child(3) {
 	top:1rem;
 	left:18rem;
 }
-.fila .ficha:nth-child(4) {
+.row .peg:nth-child(4) {
 	top:1rem;
 	left:23rem;
 }
-.fila .ficha:nth-child(5) {
+.row .peg:nth-child(5) {
 	top:1rem;
 	left:1.5rem;
 }
-.fila .ficha:nth-child(6) {
+.row .peg:nth-child(6) {
 	top:1rem;
 	left:4rem;
 }
-.fila .ficha:nth-child(7) {
+.row .peg:nth-child(7) {
 	top:3.5rem;
 	left:1.5rem;
 }
-.fila .ficha:nth-child(8) {
+.row .peg:nth-child(8) {
 	top:3.5rem;
 	left:4rem;
 }
-.selector .ficha:nth-child(1) {
+.selector .peg:nth-child(1) {
 	left:1.5rem;
 }
-.selector .ficha:nth-child(2) {
+.selector .peg:nth-child(2) {
 	left:6rem;
 }
-.selector .ficha:nth-child(3) {
+.selector .peg:nth-child(3) {
 	left:10.5rem;
 }
-.selector .ficha:nth-child(4) {
+.selector .peg:nth-child(4) {
 	left:15rem;
 }
-.selector .ficha:nth-child(5) {
+.selector .peg:nth-child(5) {
 	left:19.5rem;
 }
-.selector .ficha:nth-child(6) {
+.selector .peg:nth-child(6) {
 	left:24rem;
 }
 .colorOK {
 	border-color:#708090;
 	box-shadow: inset 0 0 0 0.5rem #eee;
 }
-.posicionOK {
+.positionOK {
 	background-color:#708090;
 	border-color:#708090;
 	box-shadow: inset 0 0 0 0.5rem #eee;
 }
-.rojo {
+.red {
 	background-color:#DC4437;
 	border-color:#DC4437;
 	box-shadow: inset 0 0 0 0.5rem #eee;
 }
-.naranja {
+.orange {
 	background-color:#F0851D;
 	border-color:#F0851D;
 	box-shadow: inset 0 0 0 0.5rem #eee;
 }
-.amarillo {
+.yellow {
 	background-color:#F5B400;
 	border-color:#F5B400;
 	box-shadow: inset 0 0 0 0.5rem #eee;
 }
-.verde {
+.green {
 	background-color:#34B67A;
 	border-color:#34B67A;
 	box-shadow: inset 0 0 0 0.5rem #eee;
 }
-.azul {
+.blue {
 	background-color:#1C90BF;
 	border-color:#1C90BF;
 	box-shadow: inset 0 0 0 0.5rem #eee;
 }
-.violeta {
+.purple {
 	background-color:#7E3795;
 	border-color:#7E3795;
 	box-shadow: inset 0 0 0 0.5rem #eee;
