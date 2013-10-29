@@ -1,129 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Mastermind</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <title>Mastermind</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
-<h1>Mastermind</h1>
-<div class="board">
-	<div class="row">
-		<span class="peg code oculto"></span>
-		<span class="peg code oculto"></span>
-		<span class="peg code oculto"></span>
-		<span class="peg code oculto"></span>
-	</div>
-	<div class="row">
-		<span class="peg code red"></span>
-		<span class="peg code orange"></span>
-		<span class="peg code yellow"></span>
-		<span class="peg code green"></span>
-		<span class="peg feedback colorOK"></span>
-		<span class="peg feedback positionOK"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code blue"></span>
-		<span class="peg code purple"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback colorOK"></span>
-		<span class="peg feedback positionOK"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="row">
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg code"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-		<span class="peg feedback"></span>
-	</div>
-	<div class="selector">
-		<a class="peg red"></a>
-		<a class="peg orange"></a>
-		<a class="peg yellow"></a>
-		<a class="peg green"></a>
-		<a class="peg blue"></a>
-		<a class="peg purple"></a>
-	</div>
-</div>
-<script src="js/mastermind.js"></script>
+    <h1>Mastermind</h1>
+    <div class="board">
+        <div class="row">
+            <span class="peg code hidden"></span>
+            <span class="peg code hidden"></span>
+            <span class="peg code hidden"></span>
+            <span class="peg code hidden"></span>
+        </div>
+        <div class="row">
+            <span class="peg code"></span>
+            <span class="peg code"></span>
+            <span class="peg code"></span>
+            <span class="peg code"></span>
+            <span class="peg feedback"></span>
+            <span class="peg feedback"></span>
+            <span class="peg feedback"></span>
+            <span class="peg feedback"></span>
+        </div>
+        <div class="selector">
+            <button class="peg red"></button>
+            <button class="peg orange"></button>
+            <button class="peg yellow"></button>
+            <button class="peg green"></button>
+            <button class="peg blue"></button>
+            <button class="peg purple"></button>
+        </div>
+        <div class="actions">
+            <button type='button' disabled="disabled" class="button restart"><i class="fa fa-refresh"></i>
+            </button>
+            <button type='button' disabled="disabled" class="button undo"><i class="fa fa-undo"></i>
+            </button>
+            <button type='button' disabled="disabled" class="button guess">Guess</button>
+
+        </div>
+    </div>
+    <div class="messageBox">
+    	<p class="message">You win!</p>
+
+    </div>
+    <script src="js/mastermind.js"></script>
 </body>
 
 </html>
