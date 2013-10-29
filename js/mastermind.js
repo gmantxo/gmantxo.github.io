@@ -28,6 +28,8 @@ for (var i = 0; i < TURNS - 1; i++) {
 document.querySelector(".board").appendChild(SELECTOR);
 document.querySelector(".board").appendChild(ACTIONS);
 
+//Set array for hidden pegs
+var HIDDENPEGS = [].slice.call(document.querySelectorAll(".row:first-child .peg"));
 
 //Set arrays for playing ROWS and COLORBUTTONS
 var ROWS = [].slice.call(document.querySelectorAll(".row:nth-child(n+2)")).reverse();
@@ -38,6 +40,10 @@ var RESTARTBUTTON = document.querySelector('.board .button.restart');
 var UNDOBUTTON = document.querySelector('.board .button.undo');
 var GUESSBUTTON = document.querySelector('.board .button.guess');
 
+//Set variables for message box
+var MESSAGEBOX = document.querySelector('.messageBox');
+var MESSAGE = document.querySelector('.messageBox p');
+var messageTimeout;
 
 //Listen COLORBUTTONS clicks
 for (var i = 0; i < COLORBUTTONS.length; i++) {
@@ -90,19 +96,22 @@ var nextTurn = function(argument) {
     if (CURRENTTURN.index >= 0) {
         ROWS[CURRENTTURN.index].classList.remove('active');
     };
-    CURRENTTURN.index++
-    setActiveRow(CURRENTTURN.index)
-    CURRENTTURN.codePegs = [].slice.call(document.querySelectorAll(".row.active .peg.code"));
-    CURRENTTURN.feedbackPegs = [].slice.call(document.querySelectorAll(".row.active .peg.feedback"));
-    CURRENTTURN.guessCode = [];
-
-    UNDOBUTTON.setAttribute('disabled', 'disabled');
-    GUESSBUTTON.setAttribute('disabled', 'disabled');
-    SELECTOR.classList.remove('disabled');
-
+    if (CURRENTTURN.index + 1 < TURNS) {
+        CURRENTTURN.index++
+        setActiveRow(CURRENTTURN.index)
+        CURRENTTURN.codePegs = [].slice.call(document.querySelectorAll(".row.active .peg.code"));
+        CURRENTTURN.feedbackPegs = [].slice.call(document.querySelectorAll(".row.active .peg.feedback"));
+        CURRENTTURN.guessCode = [];
+        UNDOBUTTON.setAttribute('disabled', 'disabled');
+        GUESSBUTTON.setAttribute('disabled', 'disabled');
+        SELECTOR.classList.remove('disabled');
+    } else {
+        lose()
+    };
 }
-
 var startNewGame = function() {
+    clearTimeout(messageTimeout);
+    MESSAGEBOX.classList.remove('visible');
     var pegs = [].slice.call(document.querySelectorAll(".row:nth-child(n+2)>.peg"));
     for (var i = pegs.length - 1; i >= 0; i--) {
         if (pegs[i].className.indexOf('code') >= 0) {
@@ -149,16 +158,14 @@ var undoColorSelection = function(e) {
 }
 var guess = function() {
     var result = compare();
-    console.log(result);
     for (var i = 0; i < result.positionMatches; i++) {
         CURRENTTURN.feedbackPegs[i].classList.add('positionOK');
     };
     for (var i = 0; i < result.colorMatches; i++) {
-        CURRENTTURN.feedbackPegs[i+result.positionMatches].classList.add('colorOK');
+        CURRENTTURN.feedbackPegs[i + result.positionMatches].classList.add('colorOK');
     };
     if (result.positionMatches === 4) {
-        alert('YOU WIN');
-        startNewGame();
+        win();
     } else {
         nextTurn();
     }
@@ -189,6 +196,35 @@ var compare = function() {
         positionMatches: positionMatches,
         colorMatches: colorMatches
     }
+}
+
+var showMessage = function(messageText) {
+    MESSAGE.innerHTML = messageText;
+    MESSAGEBOX.classList.add('visible');
+    clearTimeout(messageTimeout);
+    messageTimeout = setTimeout(function() {
+        MESSAGEBOX.classList.remove('visible');
+    }, 3000);
+}
+var showHiddenCode = function() {
+    for (var i = HIDDENPEGS.length - 1; i >= 0; i--) {
+        HIDDENPEGS[i].classList.add(gameCode[i]);
+        HIDDENPEGS[i].classList.remove('hidden');
+    };
+}
+var win = function() {
+    showMessage('You win! :)');
+    UNDOBUTTON.setAttribute('disabled', 'disabled');
+    GUESSBUTTON.setAttribute('disabled', 'disabled');
+    SELECTOR.classList.add('disabled');
+    showHiddenCode();
+}
+var lose = function() {
+    showMessage('You lose :(');
+    UNDOBUTTON.setAttribute('disabled', 'disabled');
+    GUESSBUTTON.setAttribute('disabled', 'disabled');
+    SELECTOR.classList.add('disabled');
+    showHiddenCode();
 }
 
 //Start game
