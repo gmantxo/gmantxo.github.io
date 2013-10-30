@@ -108,13 +108,13 @@ button {
     box-shadow: inset 0 0 0 0.5rem #fafafa;
     cursor: pointer;
 }
-.selector.disabled .peg {
+.selector .peg[disabled] {
     opacity: 0.4;
 }
 .selector .peg:hover {
     box-shadow: none;
 }
-.selector.disabled .peg:hover {
+.selector .peg[disabled]:hover {
     cursor: default;
     box-shadow: inset 0 0 0 0.5rem #fafafa;
 }

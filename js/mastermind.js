@@ -102,9 +102,9 @@ var nextTurn = function(argument) {
         CURRENTTURN.codePegs = [].slice.call(document.querySelectorAll(".row.active .peg.code"));
         CURRENTTURN.feedbackPegs = [].slice.call(document.querySelectorAll(".row.active .peg.feedback"));
         CURRENTTURN.guessCode = [];
-        UNDOBUTTON.setAttribute('disabled', 'disabled');
-        GUESSBUTTON.setAttribute('disabled', 'disabled');
-        SELECTOR.classList.remove('disabled');
+        disable(UNDOBUTTON);
+        disable(GUESSBUTTON);
+        enable(COLORBUTTONS);
     } else {
         lose()
     };
@@ -125,9 +125,9 @@ var startNewGame = function() {
     for (var i = gameCodePegs.length - 1; i >= 0; i--) {
         gameCodePegs[i].className = 'peg code hidden';
     };
-    RESTARTBUTTON.setAttribute('disabled', 'disabled');
-    UNDOBUTTON.setAttribute('disabled', 'disabled');
-    GUESSBUTTON.setAttribute('disabled', 'disabled');
+    disable(RESTARTBUTTON);
+    disable(UNDOBUTTON);
+    disable(GUESSBUTTON);
     gameCode = generateCode(duplicatesAllowed);
     CURRENTTURN.index = -1;
     nextTurn()
@@ -139,21 +139,21 @@ var selectColor = function(e) {
     if (CURRENTTURN.guessCode.length < CODELENGTH) {
         CURRENTTURN.codePegs[CURRENTTURN.guessCode.length].classList.add(color);
         CURRENTTURN.guessCode.push(color);
-        RESTARTBUTTON.removeAttribute('disabled');
-        UNDOBUTTON.removeAttribute('disabled');
+        enable(RESTARTBUTTON);
+        enable(UNDOBUTTON);
     }
     if (CURRENTTURN.guessCode.length === CODELENGTH) {
         GUESSBUTTON.removeAttribute('disabled');
-        SELECTOR.classList.add('disabled');
+        disable(COLORBUTTONS);
     };
 }
 var undoColorSelection = function(e) {
     CURRENTTURN.guessCode.pop();
     CURRENTTURN.codePegs[CURRENTTURN.guessCode.length].className = 'peg code';
-    GUESSBUTTON.setAttribute('disabled', 'disabled');
-    SELECTOR.classList.remove('disabled');
+    disable(GUESSBUTTON);
+    enable(COLORBUTTONS);
     if (CURRENTTURN.guessCode.length === 0) {
-        UNDOBUTTON.setAttribute('disabled', 'disabled');
+        disable(UNDOBUTTON);
     };
 }
 var guess = function() {
@@ -214,18 +214,46 @@ var showHiddenCode = function() {
 }
 var win = function() {
     showMessage('You win! :)');
-    UNDOBUTTON.setAttribute('disabled', 'disabled');
-    GUESSBUTTON.setAttribute('disabled', 'disabled');
-    SELECTOR.classList.add('disabled');
+    disable(UNDOBUTTON);
+    disable(GUESSBUTTON);
+    disable(COLORBUTTONS);
     showHiddenCode();
 }
 var lose = function() {
     showMessage('You lose :(');
-    UNDOBUTTON.setAttribute('disabled', 'disabled');
-    GUESSBUTTON.setAttribute('disabled', 'disabled');
-    SELECTOR.classList.add('disabled');
+    disable(UNDOBUTTON);
+    disable(GUESSBUTTON);
+    disable(COLORBUTTONS);
     showHiddenCode();
 }
+var enable = function(element) {
+    switch (element) {
+        case COLORBUTTONS:
+            for (var i = element.length - 1; i >= 0; i--) {
+                element[i].removeAttribute('disabled');
+            };
+            break;
+        case RESTARTBUTTON:
+        case UNDOBUTTON:
+        case GUESSBUTTON:
+            element.removeAttribute('disabled');
+            break;
 
+    }
+}
+var disable = function(element) {
+    switch (element) {
+        case COLORBUTTONS:
+            for (var i = COLORBUTTONS.length - 1; i >= 0; i--) {
+                COLORBUTTONS[i].setAttribute('disabled', 'disabled')
+            };
+            break;
+        case RESTARTBUTTON:
+        case UNDOBUTTON:
+        case GUESSBUTTON:
+            element.setAttribute('disabled', 'disabled');
+            break;
+    }
+}
 //Start game
 startNewGame();
