@@ -22,7 +22,7 @@ var ACTIONS = document.querySelector(".actions");
 SELECTOR.remove();
 ACTIONS.remove();
 for (var i = 0; i < TURNS - 1; i++) {
-    document.querySelector(".board").appendChild(document.querySelector(".row:nth-child(n+2)").cloneNode());
+    document.querySelector(".board").appendChild(document.querySelector(".row:nth-child(n+2)").cloneNode(true));
 
 };
 document.querySelector(".board").appendChild(SELECTOR);
