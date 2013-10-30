@@ -74,13 +74,13 @@ button {
 }
 .actions .button.undo {
     position: absolute;
-    left: 8rem;
+    left: 7.5rem;
     width: 5rem;
 }
 .actions .button.guess {
     position: absolute;
     right: 1.5rem;
-    width: 13.5rem;
+    width: 14rem;
 }
 .row:first-child {
     background-color: #fafafa;
