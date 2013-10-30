@@ -204,7 +204,7 @@ var showMessage = function(messageText) {
     clearTimeout(messageTimeout);
     messageTimeout = setTimeout(function() {
         MESSAGEBOX.classList.remove('visible');
-    }, 3000);
+    }, 5000);
 }
 var showHiddenCode = function() {
     for (var i = HIDDENPEGS.length - 1; i >= 0; i--) {
