@@ -1,0 +1,295 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+    font-size: 10px;
+}
+body {
+    margin: 20px;
+    background: url(../img/ios7bg.jpg) right center no-repeat;
+    background-size: -webkit-background-size: cover;
+    background-size: -moz-background-size: cover;
+    background-size: -o-background-size: cover;
+    background-size: background-size: cover;
+}
+h1 {
+    position: relative;
+    width: 29rem;
+    margin: 0 auto 2rem auto;
+    font-family:"Lato", sans-serif;
+    font-size: 3.3rem;
+    font-weight: 300;
+    color: white;
+}
+button {
+    outline: none;
+}
+.board {
+    position: relative;
+    width:29rem;
+    margin: auto;
+    overflow: hidden;
+}
+.row {
+    position: relative;
+    width:100%;
+    height:6.5rem;
+}
+.selector {
+    position: relative;
+    width:100%;
+    height:6rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 1.5rem;
+    border-radius: 2rem 2rem 0 0;
+}
+.actions {
+    background-color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    height: 4.5rem;
+    width:29rem;
+    border-radius: 0 0 2rem 2rem;
+}
+.actions .button {
+    height: 3rem;
+    background-color: #fafafa;
+    border-radius: 3px;
+    border: none;
+    font-family:"Open Sans", sans-serif;
+    font-size: 1.6rem;
+    color: #708090;
+    cursor: pointer;
+}
+.actions .button:hover {
+    background-color: #ddd;
+    color: #4D5863;
+}
+.actions .button[disabled] {
+    background-color: #fafafa;
+    color: #d9d9d9;
+    cursor: default;
+}
+.actions .button.restart {
+    position: absolute;
+    left: 1.5rem;
+    width: 5rem;
+}
+.actions .button.undo {
+    position: absolute;
+    left: 7.5rem;
+    width: 5rem;
+}
+.actions .button.guess {
+    position: absolute;
+    right: 1.5rem;
+    width: 14rem;
+}
+.row:first-child {
+    background-color: rgba(255, 255, 255, 0.6);
+    border:none;
+    border-radius: 2rem;
+}
+.row:first-child .peg {
+    box-shadow: inset 0 0 0 0.5rem #fafafa;
+}
+.row.active .peg.code {
+    border: 2px solid white;
+    background: none;
+}
+.peg {
+    position: absolute;
+    border-radius: 32%;
+    transition:all 0.3s;
+    display: block;
+    overflow: hidden;
+    border: 2px solid white;
+    border-width: 0;
+}
+.peg:before {
+    content:"";
+    display: block;
+    top:0;
+    right:0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+    transition:all 0.3s;
+    border-radius: 27%;
+}
+.selector .peg {
+    margin: auto;
+    width:3rem;
+    height:3rem;
+    top:1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+}
+.selector .peg[disabled] {
+    opacity: 0.4;
+}
+.selector .peg:hover {
+    box-shadow: none;
+}
+.selector .peg[disabled]:hover {
+    cursor: default;
+    box-shadow: inset 0 0 0 0.5rem #fafafa;
+}
+.peg.code {
+    height: 4.5rem;
+    width: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.peg.feedback {
+    height: 0rem;
+    width: 0rem;
+    border-radius: 50%;
+}
+.row .peg:nth-child(1) {
+    top:1rem;
+    left:8rem;
+}
+.row .peg:nth-child(2) {
+    top:1rem;
+    left:13rem;
+}
+.row .peg:nth-child(3) {
+    top:1rem;
+    left:18rem;
+}
+.row .peg:nth-child(4) {
+    top:1rem;
+    left:23rem;
+}
+.row .peg:nth-child(5) {
+    top:1rem;
+    left:1.5rem;
+}
+.row .peg:nth-child(6) {
+    top:1rem;
+    left:4rem;
+}
+.row .peg:nth-child(7) {
+    top:3.5rem;
+    left:1.5rem;
+}
+.row .peg:nth-child(8) {
+    top:3.5rem;
+    left:4rem;
+}
+.selector .peg:nth-child(1) {
+    left:1.5rem;
+}
+.selector .peg:nth-child(2) {
+    left:6rem;
+}
+.selector .peg:nth-child(3) {
+    left:10.5rem;
+}
+.selector .peg:nth-child(4) {
+    left:15rem;
+}
+.selector .peg:nth-child(5) {
+    left:19.5rem;
+}
+.selector .peg:nth-child(6) {
+    left:24rem;
+}
+.peg.colorOK {
+    border-color: white;
+    border-width: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+}
+.peg.positionOK {
+    background-color: white;
+    border-color: white;
+    border-width: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+}
+.peg.red:before {
+    background-color:#FC1F64;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FC1F64), to(#FF5331));
+    background: -webkit-linear-gradient(top, #FC1F64, #FF5331);
+    background: -moz-linear-gradient(top, #FC1F64, #FF5331);
+    background: -ms-linear-gradient(top, #FC1F64, #FF5331);
+    background: -o-linear-gradient(top, #FC1F64, #FF5331);
+    opacity: 1;
+}
+.peg.orange:before {
+    background-color:#FF6D02;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FF6D02), to(#FF9600));
+    background: -webkit-linear-gradient(top, #FF6D02, #FF9600);
+    background: -moz-linear-gradient(top, #FF6D02, #FF9600);
+    background: -ms-linear-gradient(top, #FF6D02, #FF9600);
+    background: -o-linear-gradient(top, #FF6D02, #FF9600);
+    opacity: 1;
+}
+.peg.yellow:before {
+    background-color:#FFC200;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFC200), to(#FFEA07));
+    background: -webkit-linear-gradient(top, #FFC200, #FFEA07);
+    background: -moz-linear-gradient(top, #FFC200, #FFEA07);
+    background: -ms-linear-gradient(top, #FFC200, #FFEA07);
+    background: -o-linear-gradient(top, #FFC200, #FFEA07);
+    opacity: 1;
+}
+.peg.green:before {
+    background-color:#0ED41B;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0ED41B), to(#7FFE69));
+    background: -webkit-linear-gradient(top, #0ED41B, #7FFE69);
+    background: -moz-linear-gradient(top, #0ED41B, #7FFE69);
+    background: -ms-linear-gradient(top, #0ED41B, #7FFE69);
+    background: -o-linear-gradient(top, #0ED41B, #7FFE69);
+    opacity: 1;
+}
+.peg.blue:before {
+    background-color:#1E66EC;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1E66EC), to(#1BB2F9));
+    background: -webkit-linear-gradient(top, #1E66EC, #1BB2F9);
+    background: -moz-linear-gradient(top, #1E66EC, #1BB2F9);
+    background: -ms-linear-gradient(top, #1E66EC, #1BB2F9);
+    background: -o-linear-gradient(top, #1E66EC, #1BB2F9);
+    opacity: 1;
+}
+.peg.purple:before {
+    background-color:#C639FF;
+    background: -webkit-gradient(linear, left top, left bottom, from(#C639FF), to(#EC4BB5));
+    background: -webkit-linear-gradient(top, #C639FF, #EC4BB5);
+    background: -moz-linear-gradient(top, #C639FF, #EC4BB5);
+    background: -ms-linear-gradient(top, #C639FF, #EC4BB5);
+    background: -o-linear-gradient(top, #C639FF, #EC4BB5);
+    opacity: 1;
+}
+.peg.hidden {
+    background-color: #ddd;
+    border-color: #ddd;
+}
+.messageBox {
+    position: absolute;
+    width:35rem;
+    height: 15rem;
+    background-color: rgba(112, 128, 144, 0.8);
+    border-radius: 0.3rem;
+    top: 18rem;
+    left: 50%;
+    margin-left: -17.5rem;
+    opacity: 0;
+    vertical-align: middle;
+    text-align: center;
+    transition: all 0.3s;
+}
+.messageBox.visible {
+    opacity:1;
+}
+p.message {
+    font-family:'Open Sans';
+    font-weight:300;
+    font-size: 6rem;
+    line-height: 2rem;
+    color: #D2D7DC;
+    vertical-align: middle;
+}
